@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<title>Nasi Goreng Asikin</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#111;
+  color:white;
+  line-height:1.6;
+}
+
+/* HEADER */
+
+header{
+  background:#c62828;
+  padding:15px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.logo img{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid white;
+}
+
+.logo h1{
+  font-size:28px;
+}
+
+/* HERO */
+
+.hero{
+  height:90vh;
+  background:url('images/bg.jpg') center center/cover no-repeat;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+
+.hero-content{
+  background:rgba(0,0,0,0.6);
+  padding:40px;
+  border-radius:20px;
+  max-width:700px;
+}
+
+.hero h2{
+  font-size:50px;
+  margin-bottom:20px;
+}
+
+.hero p{
+  font-size:20px;
+}
+
+.btn{
+  display:inline-block;
+  margin-top:20px;
+  padding:14px 30px;
+  background:#ff9800;
+  color:white;
+  text-decoration:none;
+  border-radius:10px;
+  transition:0.3s;
+}
+
+.btn:hover{
+  background:#e68900;
+}
+
+/* MENU */
+
+.menu{
+  padding:80px 20px;
+  text-align:center;
+}
+
+.menu h2{
+  font-size:40px;
+  margin-bottom:50px;
+}
+
+.menu-list{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+  max-width:1200px;
+  margin:auto;
+}
+
+/* CARD */
+
+.card{
+  background:#1b1b1b;
+  border-radius:20px;
+  overflow:hidden;
+  padding:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.4);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+}
+
+.card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:15px;
+}
+
+.card h3{
+  margin-top:15px;
+  font-size:24px;
+}
+
+.price{
+  color:#ff9800;
+  font-size:22px;
+  margin:10px 0 20px;
+  font-weight:bold;
+}
+
+/* BUTTON PESAN */
+
+.order-btn{
+  background:#ff9800;
+  color:white;
+  border:none;
+  padding:12px 25px;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:16px;
+  transition:0.3s;
+}
+
+.order-btn:hover{
+  background:#e68900;
+}
+
+/* LOCATION */
+
+.location{
+  padding:80px 0;
+  background:#181818;
+  text-align:center;
+}
+
+.location h2{
+  font-size:40px;
+  margin-bottom:40px;
+}
+
+.map iframe{
+  width:100%;
+  height:500px;
+  border:none;
+  display:block;
+}
+
+/* CONTACT */
+
+.contact{
+  padding:100px 20px;
+}
+
+.contact h2{
+  text-align:center;
+  font-size:40px;
+  margin-bottom:50px;
+}
+
+.contact-container{
+  max-width:1000px;
+  margin:auto;
+}
+
+.contact-info{
+  background:#1b1b1b;
+  padding:40px;
+  border-radius:20px;
+  text-align:center;
+}
+
+.contact-info p{
+  margin-bottom:15px;
+  color:#ccc;
+}
+
+/* FOOTER */
+
+footer{
+  background:black;
+  text-align:center;
+  padding:20px;
+  color:#aaa;
+}
+
+/* MODAL */
+
+.modal{
+  display:none;
+  position:fixed;
+  z-index:999;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(5px);
+
+  justify-content:center;
+  align-items:center;
+}
+
+.modal-content{
+  background:#1b1b1b;
+  padding:40px;
+  width:90%;
+  max-width:400px;
+  border-radius:20px;
+  text-align:center;
+  position:relative;
+  animation:popup 0.3s ease;
+}
+
+@keyframes popup{
+
+  from{
+    transform:scale(0.7);
+    opacity:0;
+  }
+
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+.close{
+  position:absolute;
+  right:20px;
+  top:10px;
+  font-size:35px;
+  cursor:pointer;
+}
+
+.qty-control{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+  margin:30px 0;
+}
+
+.qty-control button{
+  width:40px;
+  height:40px;
+  border:none;
+  border-radius:50%;
+  background:#ff9800;
+  color:white;
+  font-size:22px;
+  cursor:pointer;
+}
+
+#qty{
+  font-size:24px;
+}
+
+.checkout-btn{
+  background:#ff9800;
+  color:white;
+  border:none;
+  padding:12px 30px;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:16px;
+}
+
+/* ===== SOCIAL MEDIA ===== */
+
+.social-icons{
+  margin-top:30px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+}
+
+.social-icons a{
+  width:50px;
+  height:50px;
+  border-radius:20px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-decoration:none;
+  color:white;
+
+  /* BESARKAN ICON */
+  font-size:28px;
+
+  position:relative;
+  overflow:hidden;
+  transition:0.4s ease;
+  box-shadow:0 8px 20px rgba(0,0,0,0.35);
+}
+/* efek glow */
+.social-icons a::before{
+  content:"";
+  position:absolute;
+  width:120%;
+  height:120%;
+  background:rgba(255,255,255,0.15);
+  top:-100%;
+  left:-100%;
+  transform:rotate(25deg);
+  transition:0.5s;
+}
+
+.social-icons a:hover::before{
+  top:100%;
+  left:100%;
+}
+
+/* hover */
+.social-icons a:hover{
+  transform:translateY(-8px) scale(1.08);
+  box-shadow:0 12px 25px rgba(0,0,0,0.5);
+}
+
+/* Instagram */
+.instagram{
+  background:linear-gradient(
+    135deg,
+    #f58529,
+    #dd2a7b,
+    #8134af,
+    #515bd4
+  );
+}
+
+/* Facebook */
+.facebook{
+  background:linear-gradient(
+    135deg,
+    #1877f2,
+    #0d5fd3
+  );
+}
+
+.whatsapp{
+  width:50px;
+  height:50px;
+  border-radius:24px;
+  background:linear-gradient(
+    135deg,
+    #25d366,
+    #128c7e
+  );
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  text-decoration:none;
+
+  box-shadow:0 10px 25px rgba(0,0,0,0.35);
+
+  transition:0.4s;
+}
+
+.whatsapp i{
+  color:white;
+  font-size:28px;
+}
+
+.whatsapp:hover{
+  transform:translateY(-8px) scale(1.08);
+  box-shadow:0 14px 28px rgba(0,0,0,0.5);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+  .hero h2{
+    font-size:36px;
+  }
+
+  .logo h1{
+    font-size:22px;
+  }
+
+  input{
+  width:90%;
+  padding:10px;
+  margin:10px 0;
+  border-radius:8px;
+  border:none;
+  outline:none;
+  background:#fff;
+  color:#000;
+  font-size:16px;
+}
+
+input:focus{
+  outline:2px solid #ff9800;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+  <div class="logo">
+
+    <img src="images/logo.jpg">
+
+    <h1>Nasi Goreng Asikin</h1>
+
+  </div>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <h2>Nasi Goreng Paling Enak!</h2>
+
+    <p>Pedas, Gurih, dan Bikin Nagih 🔥</p>
+
+    <a href="#menu" class="btn">
+      Lihat Menu
+    </a>
+
+  </div>
+
+</section>
+
+<!-- MENU -->
+
+<!-- MENU -->
+
+<section class="menu" id="menu">
+
+  <h2>Menu Favorit</h2>
+
+  <div class="menu-list">
+
+    <div class="card">
+      <img src="images/NasigorengBorneo.jpg" alt="Nasi Goreng Borneo">
+      <h3>Nasi Goreng Borneo</h3>
+      <p class="price">Rp 18.000</p>
+
+      <button class="order-btn"
+      onclick="openModal('Nasi Goreng Borneo', 18000)">
+      Pesan
+    </button>
+    </div>
+
+    <div class="card">
+      <img src="images/Nasi goreng biasa.jpg" alt="Nasi Goreng Biasa">
+      <h3>Nasi Goreng Biasa</h3>
+      <p class="price">Rp 28.000</p>
+
+      <button class="order-btn"
+        onclick="openModal('Nasi Goreng Biasa', 28000)">
+        Pesan
+      </button>
+    </div>
+
+    <div class="card">
+      <img src="images/Nasi goreng Hitam.jpg" alt="Nasi Goreng Hitam">
+      <h3>Nasi Goreng Hitam</h3>
+      <p class="price">Rp 35.000</p>
+
+      <button class="order-btn"
+        onclick="openModal('Nasi Goreng Hitam', 35000)">
+        Pesan
+      </button>
+    </div>
+
+    <div class="card">
+      <img src="images/Nasi goreng mawot.jpg" alt="Nasi Goreng Mawut">
+      <h3>Nasi Goreng Mawut</h3>
+      <p class="price">Rp 25.000</p>
+
+      <button class="order-btn"
+        onclick="openModal('Nasi Goreng Mawut', 25000)">
+        Pesan
+      </button>
+    </div>
+
+    <div class="card">
+      <img src="images/Nasi goreng pedas manis.jpg" alt="Nasi Goreng Pedas Manis">
+      <h3>Nasi Goreng Pedas Manis</h3>
+      <p class="price">Rp 30.000</p>
+
+      <button class="order-btn"
+        onclick="openModal('Nasi Goreng Pedas Manis', 30000)">
+        Pesan
+      </button>
+    </div>
+
+    <div class="card">
+      <img src="images/Nasi Goreng Rawon.jpg" alt="Nasi Goreng Rawon">
+      <h3>Nasi Goreng Rawon</h3>
+      <p class="price">Rp 32.000</p>
+
+      <button class="order-btn"
+        onclick="openModal('Nasi Goreng Rawon', 32000)">
+        Pesan
+      </button>
+    </div>
+
+    <div class="card">
+      <img src="images/Nasi Goreng Soto.jpg" alt="Nasi Goreng Soto">
+      <h3>Nasi Goreng Soto</h3>
+      <p class="price">Rp 29.000</p>
+
+      <button class="order-btn"
+        onclick="openModal('Nasi Goreng Soto', 29000)">
+        Pesan
+      </button>
+    </div>
+
+    <div class="card">
+      <img src="images/Mie Goreng.jpg" alt="Mie Goreng">
+      <h3>Mie Goreng</h3>
+      <p class="price">Rp 26.000</p>
+
+      <button class="order-btn"
+        onclick="openModal('Mie Goreng', 26000)">
+        Pesan
+      </button>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- LOKASI -->
+
+<section class="location">
+
+<h2>Lokasi Rumah</h2>
+
+<div class="map">
+
+<iframe
+  src="https://www.google.com/maps?q=Nasi+Goreng+Asikin&output=embed"
+  width="100%"
+  height="500"
+  style="border:0;"
+  loading="lazy"
+  allowfullscreen>
+</iframe>
+
+</div>
+
+</section>
+
+<!-- KONTAK -->
+
+<section class="contact">
+
+<h2>Kontak</h2>
+
+<div class="contact-container">
+
+  <div class="contact-info">
+
+    <p>📍 Jl. Raya Sidogiri - Warung Dowo</p>
+
+    <!-- LINK LOKASI JUAL -->
+    <p>
+      📌 <a href="https://www.google.com/maps/place/Kantor+Balai+Desa+Plinggisan+Kraton/@-7.6760422,112.8596067,3a,75y,217.15h,89.45t/data=!3m7!1e1!3m5!1sJO95aMZIscFQOEnQRTfH9g!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0.5549445985540871%26panoid%3DJO95aMZIscFQOEnQRTfH9g%26yaw%3D217.14623641230634!7i16384!8i8192!4m6!3m5!1s0x2dd7cf77c79a7359:0x471b9b8e1d313393!8m2!3d-7.6761448!4d112.8596219!16s%2Fg%2F11cnbs1ny0?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" style="color:#ff9800;">
+        Lokasi Jualan
+      </a>
+    </p>
+
+    <p>📞 081249064766 </p>
+
+    <p>📧 nasigorengasikin@gmail.com</p>
+
+    <p>🕒 Buka setiap hari 17:00 - 00:00</p>
+
+    <p>🍱 Menerima Pesanan Catering untuk Acara Nikahan, Khitanan, dan Hajatan</p>
+
+    <!-- SOSIAL MEDIA -->
+<!-- SOSIAL MEDIA -->
+
+
+<div class="social-icons">
+
+  <a href="https://wa.me/6281249064766"
+     target="_blank"
+     class="whatsapp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <a href="https://www.instagram.com/asikin.muhammad.773?igsh=cGU3ZXQ1a3UxbGlk"
+     target="_blank"
+     class="instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
+
+  <a href="https://www.facebook.com/denis.irwanto.2025"
+     target="_blank"
+     class="facebook">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+
+</div>
+  </div>
+
+</div>
+
+</section>
+
+<!-- MODAL -->
+
+  <div id="orderModal" class="modal">
+
+  <div class="modal-content">
+
+    <span class="close" onclick="closeModal()">&times;</span>
+
+    <h2>Pesanan</h2>
+    <h4>Tidak Menerima Antar Pesanan, Bisa Di Ambil Ke lokasi atau Gojek 🙏 </h4>
+
+    <!-- INPUT NAMA -->
+    <input id="namaPemesan" type="text"
+      placeholder="Masukkan nama kamu"
+      style="width:90%;padding:10px;margin:10px 0;border-radius:8px;border:none;">
+
+    <p id="menuName"></p>
+
+    <div class="qty-control">
+      <button onclick="changeQty(-1)">-</button>
+      <span id="qty">1</span>
+      <button onclick="changeQty(1)">+</button>
+    </div>
+
+    <p id="totalHarga" style="color:#ff9800;font-weight:bold;margin-top:10px;">
+      Total: Rp 0
+    </p>
+
+    <button class="checkout-btn" onclick="checkout()">
+      Checkout
+    </button>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+
+<p>© 2026 Nasi Goreng Asikin</p>
+
+</footer>
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+function closeModal(){
+  document.getElementById("orderModal").style.display = "none";
+
+let qty = 1;
+let selectedMenu = "";
+let price = 0;
+}
+
+/* OPEN MODAL */
+function openModal(menu, harga){
+
+  selectedMenu = menu;
+  price = harga;
+  qty = 1;
+
+  document.getElementById("orderModal").style.display = "flex";
+
+  document.getElementById("menuName").innerText =
+    "Menu : " + selectedMenu;
+
+  document.getElementById("qty").innerText = qty;
+
+  updateTotal();
+
+  const input = document.getElementById("namaPemesan");
+  input.value = "";
+  input.focus();
+}
+
+/* QTY */
+function changeQty(value){
+
+  qty += value;
+
+  if(qty < 1){
+    qty = 1;
+  }
+
+  document.getElementById("qty").innerText = qty;
+
+  updateTotal(); // ⭐ ini wajib biar harga berubah
+}
+
+function updateTotal(){
+  const total = qty * price;
+  document.getElementById("totalHarga").innerText =
+    "Total: Rp " + total.toLocaleString("id-ID");
+}
+
+/* CHECKOUT WHATSAPP */
+// semua function kamu
+
+function checkout(){
+
+  const nama = document.getElementById("namaPemesan").value;
+
+  if(!nama){
+    alert("Masukkan nama dulu!");
+    return;
+  }
+
+  if(!selectedMenu){
+    alert("Pilih menu dulu!");
+    return;
+  }
+
+  const total = qty * price; // ⭐ ini yang kamu kurang
+
+  const phone = "6281249064766";
+
+  const message =
+`Halo saya mau pesan:
+
+👤 Nama : ${nama}
+🍽️ Menu : ${selectedMenu}
+🔢 Jumlah : ${qty}
+💰 Total : Rp ${total.toLocaleString("id-ID")}`;
+
+  const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+
+  window.open(url, "_blank");
+
+  }
+
+
+</script>
+</body>
+</html>
